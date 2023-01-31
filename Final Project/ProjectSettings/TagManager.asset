@@ -9,6 +9,9 @@ TagManager:
   - Slide
   - Obstacle
   - Ground
+  - Life
+  - Sand
+  - Trigger
   layers:
   - Default
   - TransparentFX

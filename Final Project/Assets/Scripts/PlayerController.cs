@@ -8,14 +8,17 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnim;
     public float jumpForce;
     public float speed;
+    public int life = 1;
     public bool isOnGround = true;
     public bool gameOver = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -30,10 +33,10 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetTrigger("Jump");
         }
 
-        if (transform.position.y < -1)
+        if (life == 0)
         {
-            playerAnim.SetTrigger("Fall");
             gameOver = true;
+            Debug.Log("Game Over");
         }
     }
 
@@ -49,6 +52,36 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            playerAnim.SetTrigger("Run");
+
         }
+
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Life"))
+        {
+            life++;
+            Destroy(other.gameObject);
+        }
+
+        if (life > 5)
+        {
+            life = 5;
+        }
+
+        if (other.CompareTag("Sand") && life > 0)
+        {
+            life -= 1;
+            transform.position = new Vector3(0.3f, 3, 0);
+        }
+
+        if (other.CompareTag("Trigger"))
+        {
+            playerAnim.SetTrigger("Fall");
+        }
+
     }
 }
