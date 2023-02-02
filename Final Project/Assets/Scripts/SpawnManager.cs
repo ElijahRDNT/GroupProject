@@ -7,18 +7,16 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] obstaclePrefabs;
     private float spawnRangeX = 2;
     private float spawnPosZ = 80;
-    public float spawnInterval = 2.5f; // Change
-    // private float startDelay = 2;
+    public float spawnInterval = 2.5f;
     private PlayerController playerControllerScript;
-    public float speed; // Add
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-        StartCoroutine(SpeedUpdate()); // Add
-        // InvokeRepeating("SpawnRandomObstacles", startDelay, spawnInterval);
-        StartCoroutine(SpawnRandomObstacles()); // Add
+        StartCoroutine(SpeedUpdate());
+        StartCoroutine(SpawnRandomObstacles());
     }
 
     // Update is called once per frame
@@ -26,16 +24,6 @@ public class SpawnManager : MonoBehaviour
     {
 
     }
-
-    // void SpawnRandomObstacles()
-    // {
-        // int obstacleIndex = Random.Range(0, obstaclePrefabs.Length);
-        // Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
-        // if (playerControllerScript.gameOver == false)
-        // {
-            // Instantiate(obstaclePrefabs[obstacleIndex], spawnPos, obstaclePrefabs[obstacleIndex].transform.rotation);
-        // }
-    // }
 
     IEnumerator SpawnRandomObstacles()
     {
@@ -49,7 +37,7 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    IEnumerator SpeedUpdate() // Add
+    IEnumerator SpeedUpdate()
     {
         while (playerControllerScript.gameOver == false)
         {
