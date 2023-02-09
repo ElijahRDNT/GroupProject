@@ -8,26 +8,26 @@ public class FollowPlayer : MonoBehaviour
     public AudioClip bgMusic;
     private Vector3 offset = new Vector3(0, 9, -10);
     private AudioSource gameAudio;
-    private PlayerController playerControllerScript;
+    private PlayerController playerControllerScript; // Referencing the Player Controller script
 
-    // Start is called before the first frame update
+
     void Start()
     {
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         gameAudio = GetComponent<AudioSource>();
         gameAudio.clip = bgMusic;
-        gameAudio.Play();
+        gameAudio.Play(); // Adding a background music when you play the game
     }
 
-    // Update is called once per frame
+
     void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
+        transform.position = player.transform.position + offset; // Making the main camera follow the player
     }
 
     void Update()
     {
-        if (playerControllerScript.gameOver == true)
+        if (playerControllerScript.gameOver == true) // If the game is over, the background music will stop
         {
             gameAudio.Stop();
         }

@@ -7,16 +7,17 @@ public class RepeatPlane : MonoBehaviour
     private Vector3 startPos;
     private float repeatWidth;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         startPos = transform.position;
         repeatWidth = GetComponent<BoxCollider>().size.z / 10;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        // Making the plane repeat
         if (transform.position.z < startPos.z - repeatWidth)
         {
             transform.position = startPos;

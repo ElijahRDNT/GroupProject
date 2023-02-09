@@ -8,24 +8,22 @@ public class SpawnManager : MonoBehaviour
     private float spawnRangeX = 2;
     private float spawnPosZ = 80;
     public float spawnInterval = 2.5f;
-    private PlayerController playerControllerScript;
+    private PlayerController playerControllerScript; // Referencing the Player Controller script
     public float speed;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-        StartCoroutine(SpeedUpdate());
-        StartCoroutine(SpawnRandomObstacles());
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
     }
 
-    IEnumerator SpawnRandomObstacles()
+    public IEnumerator SpawnRandomObstacles() // For spawning random obstacles in the game
     {
         while (playerControllerScript.gameOver == false)
         {
@@ -37,7 +35,7 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    IEnumerator SpeedUpdate()
+    public IEnumerator SpeedUpdate() // For updating the pace of the game and the spawn interval of each obstacles
     {
         while (playerControllerScript.gameOver == false)
         {
